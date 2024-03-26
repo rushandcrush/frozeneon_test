@@ -28,7 +28,7 @@ export const useDataFetch = defineStore('DataFetch', {
             this.fetchDataArray = [...data.objects];
           })
           .then(() => {
-            this.changePage(this.currentPage)
+            this.changePage(1)
           })
           .finally(() => {
             this.requestFlag = false;

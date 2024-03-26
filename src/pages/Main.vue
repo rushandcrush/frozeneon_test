@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import type { Package } from '../types';
-  import { ref, watch } from 'vue'
+  import { ref, reactive, watch } from 'vue'
   import { useDataFetch } from '../stores/DataFetch';
   import Popup from '../components/Popup.vue'
 
   const dataFetch = useDataFetch();
   let inputValue = ref<HTMLInputElement | null>(null)
-  let dialogOverflowVisible = ref<boolean>(false)
+  let dialogOverflowVisible = ref<boolean>(false);
 
   let trigerPagination = (...args: number[]) => {
     dataFetch.changePage(args[0]);
@@ -64,7 +64,7 @@
               background
               hide-on-single-page
               layout="prev, pager, next"
-              @update:current-page="dataFetch.totalPages"
+              v-model:current-page="dataFetch.currentPage"
               :total="dataFetch.totalPages"
               :page-size="dataFetch.pageSize"
               @change="trigerPagination"
